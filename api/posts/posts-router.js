@@ -32,12 +32,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const {id} = {title: req.body.title,
-                        contents: req.body.contents}
-
         console.log(req.body);
         let {title, contents} = req.body;
-        const insertPost = await Adapter.insert({ title, contents })
+        const insertPost = await Adapter.insert({ title, contents }).then(({ id }) => Adapter.findById(id))
         res.status(201).json(insertPost)
 
             if(!title || !contents) {
