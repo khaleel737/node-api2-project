@@ -9,5 +9,8 @@ routerModel.use(express.json())
 
 routerModel.use('/api/posts', adapterRouter)
 
+
+
+
 module.exports = routerModel;
 
